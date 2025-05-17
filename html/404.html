@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+      <title>ARS//SEC | NOT FOUND!!</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/tools">tools</a>
+      <a href="/store">store</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">access --request --path=/unknown</div>
+        <div class="response">
+          > <span class="status status-busy"></span> ERROR 404: TARGET NOT FOUND<br>
+          > <span class="blink">_</span>
+        </div>
+
+        <div class="prompt">trace --route</div>
+        <div class="response">
+          > POSSIBLE ORIGINS:<br>
+          > <a href="/">/home</a><br>
+          > <a href="/tools">/tools</a><br>
+          > <a href="/store">/store</a>
+        </div>
+
+        <div class="prompt">scan --threat-level</div>
+        <div class="response">
+          > <span class="status status-online"></span> NO INTRUSION DETECTED<br>
+          > THIS IS A ROUTING ERROR
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/script.js"></script>
+</body>
+</html>

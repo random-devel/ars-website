@@ -1,0 +1,369 @@
+:root {
+  /* Color Scheme */
+  --primary: #ff0033; /* Vibrant red */
+  --secondary: #0066ff; /* Electric blue */
+  --dark: #0a0a0a; /* Pure black */
+  --light: #ffffff; /* Pure white */
+  --gray: #222222;
+  
+  /* Terminal Colors */
+  --text: var(--light);
+  --text-dim: #aaaaaa;
+  --cursor: var(--primary);
+  --selection: rgba(255, 0, 51, 0.5);
+  --border: 1px solid var(--primary);
+  --input-bg: #111111;
+  --glow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+/* Typography */
+h1, h2, h3 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: var(--primary);
+  text-shadow: var(--glow);
+}
+
+/* Animations */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes type {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.cursor {
+  animation: blink 1s infinite;
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: type 3.5s steps(40);
+}
+
+/* Terminal Layout */
+.terminal {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.prompt {
+  color: var(--text);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.prompt::before {
+  content: 'root@ars-sec:~$';
+  color: var(--primary);
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.response {
+  margin-bottom: 2rem;
+  border-left: var(--border);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.response::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+}
+
+/* Navigation */
+nav {
+  border-bottom: var(--border);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.9);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--primary);
+  text-shadow: var(--glow);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text-dim);
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-links a.active {
+  color: var(--primary);
+}
+
+.nav-links a.active::after {
+  content: '_';
+  position: absolute;
+  animation: blink 1s infinite;
+  color: var(--primary);
+}
+
+/* Terminal Window */
+.terminal-window {
+  border: var(--border);
+  box-shadow: 0 0 20px rgba(255, 0, 51, 0.2);
+  margin: 2rem auto;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.terminal-header {
+  background: var(--input-bg);
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: var(--border);
+}
+
+.terminal-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+  background: #ff5c5c;
+}
+
+.terminal-btn:nth-child(2) {
+  background: #ffbe4f;
+}
+
+.terminal-btn:nth-child(3) {
+  background: #00cc7a;
+}
+
+.terminal-body {
+  padding: 1.5rem;
+  min-height: 300px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--primary);
+  color: var(--light);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 102, 255, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: var(--light);
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.card {
+  background: var(--input-bg);
+  border: var(--border);
+  padding: 1.5rem;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(255, 0, 51, 0.2);
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--primary);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--input-bg);
+  border: var(--border);
+  color: var(--text);
+  font-family: 'Courier New', monospace;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+/* Status Indicators */
+.status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.status-online {
+  background: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+.status-offline {
+  background: #ff0000;
+}
+
+.status-busy {
+  background: #ffcc00;
+  animation: pulse 2s infinite;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  margin: 2rem 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--primary);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--secondary);
+  border: 2px solid var(--primary);
+}
+
+.timeline-date {
+  color: var(--secondary);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .nav-links {
+    margin-top: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .terminal {
+    padding: 1rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

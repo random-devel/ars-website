@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Cyber Store</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/script.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/store">store</a>
+      <a href="/contact">contact</a>
+      <a href="/certificates">certs</a>
+      <a href="/history">history</a>
+      <a href="/tools">tools</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">store --list --category=all</div>
+        
+        <div class="response">
+          <h3>CYBER TOOLS</h3>
+          <div class="grid">
+            <div class="card">
+              <h3>NETSPLOIT PRO</h3>
+              <p>Complete network penetration testing suite</p>
+              <div class="price">$499<span>/year</span></div>
+              <div class="quantity-control">
+                <button class="quantity-minus">-</button>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="quantity-plus">+</button>
+              </div>
+              <button class="btn">ADD TO CART</button>
+              <div class="tag">BESTSELLER</div>
+            </div>
+            
+            <div class="card">
+              <h3>WEBFIRE 2.0</h3>
+              <p>Advanced web application firewall bypass toolkit</p>
+              <div class="price">$349<span>/year</span></div>
+              <div class="quantity-control">
+                <button class="quantity-minus">-</button>
+                <input type="number" class="quantity-input" value="1" min="1">
+                <button class="quantity-plus">+</button>
+              </div>
+              <button class="btn">ADD TO CART</button>
+              <div class="tag">NEW</div>
+            </div>
+          </div>
+          
+          <h3>TRAINING PROGRAMS</h3>
+          <div class="grid">
+            <div class="card">
+              <h3>RED TEAM BOOTCAMP</h3>
+              <p>40-hour intensive training program</p>
+              <div class="price">$1,299</div>
+              <div class="details">
+                <p><span class="status status-online"></span> Next session: 2023-11-15</p>
+                <p>Seats remaining: 8/20</p>
+              </div>
+              <button class="btn">ENROLL NOW</button>
+            </div>
+            
+            <div class="card">
+              <h3>MALWARE ANALYSIS</h3>
+              <p>Reverse engineering and threat analysis</p>
+              <div class="price">$899</div>
+              <div class="details">
+                <p><span class="status status-online"></span> Self-paced</p>
+                <p>Access: 1 year</p>
+              </div>
+              <button class="btn">ENROLL NOW</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="prompt">payment --method=select</div>
+        <div class="response">
+          > ACCEPTED PAYMENT METHODS:<br>
+          > <span class="payment-method">CRYPTO (BTC, ETH, XMR)</span><br>
+          > <span class="payment-method">WIRE TRANSFER</span><br>
+          > <span class="payment-method">SECURE CREDIT CARD</span><br>
+          > <span class="discount">10% DISCOUNT FOR CRYPTO PAYMENTS</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

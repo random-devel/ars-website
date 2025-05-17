@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ARS//SEC | CLEARANCE REQUEST</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/tools">tools</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">access --request --level=recruit</div>
+        <div class="response">
+          > INITIATING CLEARANCE PROTOCOL<br>
+          > <span class="status status-busy"></span> VERIFICATION REQUIRED
+        </div>
+
+        <form class="auth-form">
+          <div class="form-group">
+            <label for="codename">CALLSIGN:</label>
+            <input type="text" id="codename" required placeholder="agent_x137">
+          </div>
+
+          <div class="form-group">
+            <label for="authkey">AUTH KEY:</label>
+            <input type="password" id="authkey" required placeholder="••••••••">
+          </div>
+
+          <div class="form-group">
+            <label for="confirm">CONFIRM KEY:</label>
+            <input type="password" id="confirm" required placeholder="••••••••">
+          </div>
+
+          <div class="form-group">
+            <label for="sector">SPECIALIZATION:</label>
+            <select id="sector">
+              <option value="pentest">Penetration Testing</option>
+              <option value="malware">Malware Analysis</option>
+              <option value="threathunt">Threat Hunting</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn">
+            <span class="status status-online"></span> REQUEST CLEARANCE
+          </button>
+        </form>
+
+        <div class="prompt">notice --security</div>
+        <div class="response">
+          > ALL APPLICATIONS VETTED BY COMMAND<br>
+          > EXPECT 48H VERIFICATION DELAY<br>
+          > UNAUTHORIZED REQUESTS WILL BE TRACED
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

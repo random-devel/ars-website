@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ARS//SEC | AGENT PROFILE</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    .agent-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .stat-card {
+      border: var(--border);
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/profile" class="active">profile</a>
+      <a href="/store">store</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">whoami --detailed</div>
+        <div class="response">
+          > AGENT PROFILE: <span class="glow">PHANTOM</span><br>
+          > CLEARANCE LEVEL: <span class="glow">ALPHA-9</span><br>
+          > LAST ACTIVE: <span class="glow">2023-11-30 04:20:00Z</span>
+        </div>
+
+        <div class="agent-stats">
+          <div class="stat-card">
+            <h3>OPERATIONS</h3>
+            <p class="glow">47</p>
+          </div>
+          <div class="stat-card">
+            <h3>CVEs FOUND</h3>
+            <p class="glow">12</p>
+          </div>
+          <div class="stat-card">
+            <h3>TOOLS MASTERED</h3>
+            <p class="glow">23/28</p>
+          </div>
+        </div>
+
+        <div class="prompt">certificates --list</div>
+        <div class="response">
+          > OSCP (EXPIRES: NEVER)<br>
+          > CRTO (EXPIRES: 2024-08-30)<br>
+          > eWPTX (EXPIRES: 2025-03-15)
+        </div>
+
+        <div class="prompt">threat --level</div>
+        <div class="response">
+          > CURRENT THREAT PROFILE:<br>
+          > <span class="status status-busy"></span> ELEVATED RISK DETECTED<br>
+          > RECOMMENDED ACTION: 2FA ROTATION
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .glow {
+      color: var(--secondary);
+      text-shadow: 0 0 5px currentColor;
+    }
+  </style>
+</body>
+</html>

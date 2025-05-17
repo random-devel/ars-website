@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Secure Contact</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/script.js"></script>
+  <style>
+    /* Additional contact-specific styles */
+    .encryption-status {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .encryption-status .status {
+      margin-right: 0.5rem;
+    }
+    
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .contact-method {
+      border: var(--border);
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .contact-method:hover {
+      background: var(--input-bg);
+      transform: translateY(-3px);
+    }
+    
+    .contact-method h3 {
+      color: var(--secondary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-method h3 i {
+      margin-right: 0.5rem;
+    }
+    
+    .pgp-key {
+      background: var(--input-bg);
+      padding: 1rem;
+      border: var(--border);
+      font-family: monospace;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      margin-top: 1rem;
+      overflow-x: auto;
+    }
+    
+    .copy-btn {
+      background: var(--secondary);
+      color: var(--light);
+      border: none;
+      padding: 0.3rem 0.6rem;
+      font-family: 'Courier New', monospace;
+      margin-top: 0.5rem;
+      cursor: pointer;
+    }
+    
+    .copy-btn:hover {
+      background: var(--primary);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/store">store</a>
+      <a href="/contact">contact</a>
+      <a href="/certificates">certs</a>
+      <a href="/history">history</a>
+      <a href="/tools">tools</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">connect --secure --encrypt=pgp</div>
+        
+        <div class="response">
+          <div class="encryption-status">
+            <span class="status status-online"></span>
+            <span>SECURE CHANNEL ESTABLISHED (AES-256 + PGP)</span>
+          </div>
+          
+          <h3>CONTACT METHODS</h3>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <h3><i class="fas fa-envelope"></i> ENCRYPTED EMAIL</h3>
+              <p>For sensitive communications</p>
+              <div class="pgp-key">
+                -----BEGIN PGP PUBLIC KEY BLOCK-----<br>
+                mQENBFyY7gsBCADApT8X6...[truncated]...<br>
+                =2kQH<br>
+                -----END PGP PUBLIC KEY BLOCK-----
+              </div>
+              <button class="copy-btn">COPY PGP KEY</button>
+              <p class="email-link">
+                <a href="mailto:secure@ars-sec.com">secure@ars-sec.com</a>
+              </p>
+            </div>
+            
+            <div class="contact-method">
+              <h3><i class="fas fa-shield-alt"></i> SECURE FORM</h3>
+              <p>For general inquiries</p>
+              <form class="contact-form">
+                <div class="form-group">
+                  <label for="name">CALLSIGN/NAME:</label>
+                  <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                  <label for="email">SECURE DROP:</label>
+                  <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="subject">SUBJECT:</label>
+                  <select id="subject" required>
+                    <option value="">[SELECT]</option>
+                    <option value="pentest">Penetration Testing</option>
+                    <option value="consulting">Security Consulting</option>
+                    <option value="training">Training Inquiry</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="message">MESSAGE:</label>
+                  <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">
+                  <i class="fas fa-lock"></i> SEND ENCRYPTED
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+        <div class="prompt">status --response-time</div>
+        <div class="response">
+          > CURRENT RESPONSE TIMES:<br>
+          > URGENT: < 24 HOURS<br>
+          > HIGH PRIORITY: 1-2 BUSINESS DAYS<br>
+          > STANDARD: 3-5 BUSINESS DAYS<br>
+          > <span class="status status-online"></span> OPERATIONAL HOURS: 24/7/365
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Contact page specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+      // PGP key copy functionality
+      const copyBtn = document.querySelector('.copy-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function() {
+          const pgpKey = document.querySelector('.pgp-key').textContent;
+          navigator.clipboard.writeText(pgpKey).then(() => {
+            copyBtn.textContent = 'COPIED!';
+            setTimeout(() => {
+              copyBtn.textContent = 'COPY PGP KEY';
+            }, 2000);
+          });
+        });
+      }
+      
+      // Form submission
+      const contactForm = document.querySelector('.contact-form');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Get form values
+          const name = document.getElementById('name').value;
+          const email = document.getElementById('email').value;
+          const subject = document.getElementById('subject').value;
+          const message = document.getElementById('message').value;
+          
+          // Create response element
+          const response = document.createElement('div');
+          response.className = 'response';
+          response.innerHTML = `
+            > MESSAGE ENCRYPTED AND QUEUED<br>
+            > CALLSIGN: ${name}<br>
+            > SUBJECT: ${subject}<br>
+            > TRACKING ID: #${Math.floor(100000 + Math.random() * 900000)}<br>
+            > <span class="status status-online"></span> EXPECT RESPONSE WITHIN 24 HOURS
+          `;
+          
+          // Append to terminal
+          const terminalBody = document.querySelector('.terminal-body');
+          terminalBody.appendChild(response);
+          
+          // Clear form
+          contactForm.reset();
+          
+          // Scroll to bottom
+          terminalBody.scrollTop = terminalBody.scrollHeight;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

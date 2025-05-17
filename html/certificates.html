@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Certifications</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <script src="/static/js/script.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/store">store</a>
+      <a href="/contact">contact</a>
+      <a href="/certificates">certs</a>
+      <a href="/history">history</a>
+      <a href="/tools">tools</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">creds --list --verified=true</div>
+        
+        <div class="response">
+          <h3>OFFICIAL CERTIFICATIONS</h3>
+          <div class="grid">
+            <div class="card">
+              <h3>OSCP</h3>
+              <p class="issuer">Offensive Security Certified Professional</p>
+              <div class="details">
+                <p><span class="status status-online"></span> Active</p>
+                <p>Cert ID: OSCP-4872-2023</p>
+                <p>Issued: 2023-01-15</p>
+                <p>Expires: Never</p>
+              </div>
+              <div id="verification-oscp" class="verification-result">
+                <button class="btn verify-btn" data-cert-id="oscp">VERIFY</button>
+              </div>
+            </div>
+            
+            <div class="card">
+              <h3>CRTO</h3>
+              <p class="issuer">Certified Red Team Operator</p>
+              <div class="details">
+                <p><span class="status status-online"></span> Active</p>
+                <p>Cert ID: CRTO-2291-2022</p>
+                <p>Issued: 2022-08-30</p>
+                <p>Expires: 2024-08-30</p>
+              </div>
+              <div id="verification-crto" class="verification-result">
+                <button class="btn verify-btn" data-cert-id="crto">VERIFY</button>
+              </div>
+            </div>
+          </div>
+          
+          <h3>SPECIALIZED TRAINING</h3>
+          <div class="grid">
+            <div class="card">
+              <h3>ADVANCED EXPLOIT DEV</h3>
+              <p class="issuer">Offensive Security</p>
+              <div class="details">
+                <p><span class="status status-online"></span> Completed</p>
+              </div>
+            </div>
+            
+            <div class="card">
+              <h3>CLOUD PENETRATION TESTING</h3>
+              <p class="issuer">SANS Institute</p>
+              <div class="details">
+                <p><span class="status status-online"></span> Completed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="prompt">verify --help</div>
+        <div class="response">
+          > Use the VERIFY button to check certification authenticity<br>
+          > All certifications are digitally signed and blockchain-verified
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
