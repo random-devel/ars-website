@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Secure Access</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* Login-specific enhancements */
+    .auth-container {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .auth-switch {
+      text-align: center;
+      margin-top: 2rem;
+      border-top: 1px solid var(--primary);
+      padding-top: 1.5rem;
+    }
+
+    .auth-switch a {
+      color: var(--secondary);
+      border-bottom: 1px dashed var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .new-agent-notice {
+      background: rgba(0, 102, 255, 0.1);
+      border-left: 3px solid var(--secondary);
+      padding: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .two-factor {
+      margin-top: 1.5rem;
+      border-top: var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .recovery-link {
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+       <a href="/">home</a>
+       <a href="/login" class="active">login</a>
+      <a href="/store">store</a>
+      <a href="/contact">contact</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">access --request --auth=secure</div>
+
+        <div class="response">
+          > WARNING: UNAUTHORIZED ACCESS WILL BE PROSECUTED<br>
+          > ALL LOGINS ARE LOGGED AND MONITORED<br>
+          > <span class="status status-online"></span> CONNECTION ENCRYPTED (AES-256)
+        </div>
+
+        <div class="auth-container">
+          <!-- New Agent Notice -->
+          <div class="new-agent-notice">
+            <div class="prompt">user --status=new</div>
+            <div class="response">
+              > NO ACTIVE CREDENTIALS DETECTED<br>
+              > <a href="/register" class="btn btn-secondary" style="margin-top: 0.5rem;">
+                  <span class="status status-busy"></span> REQUEST CLEARANCE
+                </a>
+            </div>
+          </div>
+
+          <form id="loginForm" class="auth-form">
+            <div class="form-group">
+              <label for="username">CALLSIGN:</label>
+              <input type="text" id="username" name="username" required
+                     placeholder="agent_id" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+              <label for="password">CODEPHRASE:</label>
+              <input type="password" id="password" name="password" required
+                     placeholder="••••••••" autocomplete="current-password">
+              <div class="recovery-link">
+                <a href="recovery.html">forgot codephrase?</a>
+              </div>
+            </div>
+
+            <div class="two-factor">
+              <label for="otp">VERIFICATION CODE:</label>
+              <input type="text" id="otp" name="otp"
+                     placeholder="6-digit MFA code" maxlength="6"
+                     pattern="\d{6}" title="Enter 6-digit code">
+              <p class="hint">Check your authenticator app</p>
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn">
+                <span class="status status-online"></span> INITIATE ACCESS
+              </button>
+            </div>
+          </form>
+
+          <div class="auth-switch">
+            <p>NO ACTIVE CREDENTIALS? <a href="/register">REQUEST NEW CLEARANCE</a></p>
+          </div>
+        </div>
+
+        <div class="prompt">security --notice</div>
+        <div class="response">
+          > THIS SYSTEM CONTAINS CLASSIFIED INFORMATION<br>
+          > UNAUTHORIZED ACCESS PROHIBITED UNDER PENAL CODE 502<br>
+          > ACTIVITY MONITORED BY ARS//SEC INTRUSION DETECTION
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginForm = document.getElementById('loginForm');
+
+      loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const otp = document.getElementById('otp').value;
+
+        const response = document.createElement('div');
+        response.className = 'response';
+
+        if(username && password) {
+          response.innerHTML = `
+            > <span class="status status-online"></span> AUTHENTICATING...<br>
+            > CALLSIGN: ${username}<br>
+            > SESSION ID: #${Math.floor(100000 + Math.random() * 900000)}<br>
+            > <meta http-equiv="refresh" content="2;url=/profile">
+          `;
+        } else {
+          response.innerHTML = `
+            > <span class="status status-busy"></span> ACCESS DENIED<br>
+            > INVALID CREDENTIALS<br>
+            > <a href="/register" style="color: var(--secondary);">CREATE NEW ACCOUNT?</a>
+          `;
+        }
+
+        const terminalBody = document.querySelector('.terminal-body');
+        terminalBody.appendChild(response);
+        loginForm.reset();
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+      });
+
+      document.getElementById('username').focus();
+    });
+  </script>
+</body>
+</html>
