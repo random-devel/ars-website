@@ -99,14 +99,6 @@
               </div>
             </div>
 
-            <div class="two-factor">
-              <label for="otp">VERIFICATION CODE:</label>
-              <input type="text" id="otp" name="otp"
-                     placeholder="6-digit MFA code" maxlength="6"
-                     pattern="\d{6}" title="Enter 6-digit code">
-              <p class="hint">Check your authenticator app</p>
-            </div>
-
             <div class="form-group">
               <button type="submit" class="btn">
                 <span class="status status-online"></span> INITIATE ACCESS
@@ -138,7 +130,6 @@
 
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        const otp = document.getElementById('otp').value;
 
         const response = document.createElement('div');
         response.className = 'response';

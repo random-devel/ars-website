@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Agent Registration</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* Registration-specific styles */
+    .auth-container {
+      max-width: 600px;
+      margin: 2rem auto;
+    }
+    
+    .auth-step {
+      margin-bottom: 2rem;
+      border-left: var(--border);
+      padding-left: 1rem;
+    }
+    
+    .clearance-badge {
+      display: inline-block;
+      padding: 0.3rem 0.6rem;
+      background: var(--secondary);
+      color: var(--dark);
+      font-weight: bold;
+      margin-left: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/register" class="active">register</a>
+      <a href="/store">store</a>
+      <a href="/contact">contact</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">access --request --level=new_agent</div>
+        
+        <div class="response">
+          > INITIATING CLEARANCE PROTOCOL<br>
+          > <span class="status status-busy"></span> VERIFICATION REQUIRED<br>
+          > THIS PROCESS IS MONITORED AND LOGGED
+        </div>
+        
+        <div class="auth-container">
+          <div class="auth-step">
+            <div class="prompt">agent --create --callsign</div>
+            <div class="response">
+              > ENTER YOUR IDENTIFICATION DATA<br>
+              > ALL FIELDS ARE MANDATORY
+            </div>
+            
+            <form id="registerForm">
+              <div class="form-group">
+                <label for="callsign">CALLSIGN:</label>
+                <input type="text" id="callsign" required placeholder="agent_x137">
+              </div>
+              
+              <div class="form-group">
+                <label for="authkey">AUTH KEY:</label>
+                <input type="password" id="authkey" required placeholder="••••••••">
+              </div>
+              
+              <div class="form-group">
+                <label for="confirm">CONFIRM KEY:</label>
+                <input type="password" id="confirm" required placeholder="••••••••">
+              </div>
+            </form>
+          </div>
+          
+          <div class="auth-step">
+            <div class="prompt">agent --specialization --select</div>
+            <div class="response">
+              > SELECT YOUR OPERATIONAL SPECIALIZATION<br>
+              > THIS WILL DETERMINE YOUR INITIAL CLEARANCE LEVEL
+            </div>
+            
+            <div class="form-group">
+              <label for="specialization">SPECIALIZATION:</label>
+              <select id="specialization" form="registerForm">
+                <option value="pentest">Penetration Testing</option>
+                <option value="malware">Malware Analysis</option>
+                <option value="threathunt">Threat Hunting</option>
+                <option value="forensics">Digital Forensics</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="auth-step">
+            <div class="prompt">system --notice</div>
+            <div class="response">
+              > WARNING: FALSE INFORMATION WILL RESULT IN TERMINATION<br>
+              > ALL AGENTS START AT <span class="clearance-badge">ALPHA-1</span> CLEARANCE<br>
+              > EXPECT 24-48H VERIFICATION DELAY
+            </div>
+            
+            <button type="submit" form="registerForm" class="btn">
+              <span class="status status-online"></span> REQUEST CLEARANCE
+            </button>
+          </div>
+        </div>
+        
+        <div class="prompt">security --protocol</div>
+        <div class="response">
+          > ALL COMMUNICATIONS ENCRYPTED (AES-256)<br>
+          > BIOMETRIC VERIFICATION WILL BE REQUIRED<br>
+          > UNAUTHORIZED ACCESS ATTEMPTS WILL BE TRACED
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
