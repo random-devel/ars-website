@@ -31,12 +31,21 @@ def log():
 def cred(username : str = Form(...), password : str = Form(...)):
     with sqlite3.connect('dbs/users.db') as userdb:
         usercurs = userdb.cursor()
-        usercurs.execute('SELECT * FROM users WHERE username = ?',username)
+        usercurs.execute('SELECT * FROM users WHERE username = ?',(username,))
         data = usercurs.fetchone()
         if data:
             if password == data[1]:
                 return HTMLResponse(status_code=200)
             else: return HTMLResponse(status_code=401)
+
+@app.get('/register')
+def contact():
+    return FileResponse('html/register.html')
+
+@app.post('/register')
+def reg(username : str = Form(...), password : str = Form(...)):
+    pass
+
 @app.get('/services')
 def sotre():
     return FileResponse('html/services.html')
@@ -49,6 +58,3 @@ def tools():
 def history():
     return FileResponse('html/history.html')
 
-@app.get('/register')
-def contact():
-    return FileResponse('html/register.html')

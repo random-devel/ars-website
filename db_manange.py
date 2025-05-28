@@ -6,7 +6,7 @@ curs = db.cursor()
 
 data = ['mohamed' , 'thisisforme']
 
-curs.execute('INSERT INTO users (username,password) VALUES (?,?)',data)
+curs.execute('CREATE TABLE users (username TEXT, email TEXT)')
 
 db.commit()
 

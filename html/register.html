@@ -64,10 +64,10 @@
               > ALL FIELDS ARE MANDATORY
             </div>
             
-            <form id="registerForm">
+            <form id="registerForm" method="post">
               <div class="form-group">
                 <label for="callsign">CALLSIGN:</label>
-                <input type="text" id="callsign" required placeholder="agent_x137">
+                <input type="text" id="callsign" required placeholder="agent_x137" minlength="5" maxlength="14">
               </div>
               
               <div class="form-group">
@@ -79,39 +79,15 @@
                 <label for="confirm">CONFIRM KEY:</label>
                 <input type="password" id="confirm" required placeholder="••••••••">
               </div>
+
+              <button type="submit" class="btn" id="confirmbtn">
+                <span class="status status-online"></span> REQUEST CLEARANCE
+              </button>
             </form>
           </div>
-          
-          <div class="auth-step">
-            <div class="prompt">agent --specialization --select</div>
-            <div class="response">
-              > SELECT YOUR OPERATIONAL SPECIALIZATION<br>
-              > THIS WILL DETERMINE YOUR INITIAL CLEARANCE LEVEL
-            </div>
+
             
-            <div class="form-group">
-              <label for="specialization">SPECIALIZATION:</label>
-              <select id="specialization" form="registerForm">
-                <option value="pentest">Penetration Testing</option>
-                <option value="malware">Malware Analysis</option>
-                <option value="threathunt">Threat Hunting</option>
-                <option value="forensics">Digital Forensics</option>
-              </select>
-            </div>
-          </div>
-          
-          <div class="auth-step">
-            <div class="prompt">system --notice</div>
-            <div class="response">
-              > WARNING: FALSE INFORMATION WILL RESULT IN TERMINATION<br>
-              > ALL AGENTS START AT <span class="clearance-badge">ALPHA-1</span> CLEARANCE<br>
-              > EXPECT 24-48H VERIFICATION DELAY
-            </div>
             
-            <button type="submit" form="registerForm" class="btn">
-              <span class="status status-online"></span> REQUEST CLEARANCE
-            </button>
-          </div>
         </div>
         
         <div class="prompt">security --protocol</div>
@@ -123,5 +99,26 @@
       </div>
     </div>
   </div>
+  <script>
+    const authkey = document.getElementById('authkey');
+    const confirmkey = document.getElementById('confirm');
+    const registerForm = document.getElementById('registerForm');
+
+    confirmkey.addEventListener('input', () => {
+      if (authkey.value !== confirmkey.value) {
+        confirmkey.setCustomValidity("Keys must match");
+      } else {
+        confirmkey.setCustomValidity("");
+      }
+    });
+
+    registerForm.addEventListener('submit', (e) => {
+      if (authkey.value !== confirmkey.value) {
+        e.preventDefault();
+        alert("Auth keys do not match!");
+      }
+    });
+    
+  </script>
 </body>
 </html>
