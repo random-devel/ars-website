@@ -46,6 +46,10 @@ def contact():
 def reg(username : str = Form(...), password : str = Form(...)):
     pass
 
+@app.get('/passwd')
+def passwd():
+    return FileResponse('html/pass.html')
+
 @app.get('/services')
 def sotre():
     return FileResponse('html/services.html')
