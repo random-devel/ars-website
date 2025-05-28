@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Elite Cybersecurity</title>
   <link rel="stylesheet" href="/static/css/style.css">
-  <script src="/static/js/script.js"></script>
 </head>
 <body>
   <nav>
@@ -13,8 +12,8 @@
     <div class="nav-links">
        <a href="/" class="active">home</a>
        <a href="/login">login</a>
-      <a href="/store">store</a>
-      <a href="/contact">contact</a>
+      <a href="/services">services</a>
+      
       
       <a href="/history">history</a>
       <a href="/tools">tools</a>
@@ -68,6 +67,55 @@
     </div>
   </div>
 
+  <script src="/static/js/script.js"></script>
+  <script>
 
+    // making command dynamic changes
+
+    const command = document.querySelector('.terminal-input');
+    command.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+        check();
+        }
+    });
+
+    function check() {
+        const ter_body = document.querySelector('.terminal-body');
+        let content = command.value.trim();  // Added trim() to remove whitespace
+        const arr = ['help', 'info', 'contact', 'options'];  
+        
+        let element = document.createElement('p');
+        if (arr.includes(content)) {
+        switch (content) {
+            case 'help':
+            element.textContent = `Processing: ${content}`;  
+            break;
+            case 'info':
+            element.textContent = `Processing: ${content}`;  
+            break;
+            case 'contact':
+            element.textContent = `Processing: ${content}`;  
+            break;
+            case 'options':
+            element.textContent = `Processing: ${content}`;  
+            break;
+        }
+        }
+        else {
+        element.textContent = `Command "${content}" not found`;  // Fixed textContent (was lowercase)
+        }
+        
+        // Create prompt div properly
+        const br = document.createElement('br')
+        const promptDiv = document.createElement('div');
+        promptDiv.className = 'prompt';
+        promptDiv.textContent = 'command --execute';
+        
+        ter_body.appendChild(promptDiv);
+        ter_body.appendChild(element);
+        ter_body.appendChild(br)
+        command.value = '';
+    }
+  </script>
 </body>
 </html>

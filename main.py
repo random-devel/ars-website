@@ -1,10 +1,12 @@
-from fastapi import FastAPI, Depends, status
+from fastapi import FastAPI, Depends, status, Form
 from fastapi import Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+
+import sqlite3
 
 app = FastAPI()
 
@@ -25,9 +27,19 @@ def root():
 def log():
     return FileResponse('html/login.html')
 
-@app.get('/store')
+@app.post('/login')
+def cred(username : str = Form(...), password : str = Form(...)):
+    with sqlite3.connect('dbs/users.db') as userdb:
+        usercurs = userdb.cursor()
+        usercurs.execute('SELECT * FROM users WHERE username = ?',username)
+        data = usercurs.fetchone()
+        if data:
+            if password == data[1]:
+                return HTMLResponse(status_code=200)
+            else: return HTMLResponse(status_code=401)
+@app.get('/services')
 def sotre():
-    return FileResponse('html/store.html')
+    return FileResponse('html/services.html')
 
 @app.get('/tools')
 def tools():
@@ -36,10 +48,6 @@ def tools():
 @app.get('/history')
 def history():
     return FileResponse('html/history.html')
-
-@app.get('/contact')
-def contact():
-    return FileResponse('html/contact.html')
 
 @app.get('/register')
 def contact():

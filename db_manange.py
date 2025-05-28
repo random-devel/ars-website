@@ -1,12 +1,13 @@
 import sqlite3
 
-db = sqlite3.connect('dbs/product.db')
+db = sqlite3.connect('dbs/users.db')
 
 curs = db.cursor()
 
-products = [[1,'scanner','90$'], [2,'hacktool','70$'], [3,'nmap','80$']]
+data = ['mohamed' , 'thisisforme']
 
-curs.execute('select * from products where id = 2')
+curs.execute('INSERT INTO users (username,password) VALUES (?,?)',data)
 
-data = curs.fetchone()
-print(data)
+db.commit()
+
+db.close()
