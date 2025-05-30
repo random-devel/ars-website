@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Agent Profile</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* Profile-specific styles */
+    .agent-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .agent-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--primary);
+      background: var(--gray);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--primary);
+    }
+    
+    .agent-info {
+      border-left: var(--border);
+      padding-left: 1rem;
+    }
+    
+    .clearance-level {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background: var(--secondary);
+      color: var(--dark);
+      font-weight: bold;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: var(--border);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      color: var(--primary);
+      margin: 0.5rem 0;
+    }
+    
+    .operations-list {
+      margin-top: 2rem;
+    }
+    
+    .operation-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray);
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">ARS//SEC</div>
+    <div class="nav-links">
+      <a href="/">home</a>
+      <a href="/login">login</a>
+      <a href="/services">services</a>
+      <a href="/history">history</a>
+      <a href="/tools">tools</a>
+      <a href="/profile" class="active">profile</a>
+    </div>
+  </nav>
+
+  <div class="terminal">
+    <div class="terminal-window">
+      <div class="terminal-header">
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+        <div class="terminal-btn"></div>
+      </div>
+      <div class="terminal-body">
+        <div class="prompt">agent --status --id=AGENT_X137</div>
+        <div class="response">
+          > ACCESS GRANTED: <span class="status status-online"></span> VERIFIED<br>
+          > BIOMETRICS CONFIRMED | LAST LOGIN: TODAY 14:37 UTC
+        </div>
+        
+        <div class="agent-badge">
+          <div class="agent-avatar">AX</div>
+          <div class="agent-info">
+            <div class="prompt">agent_x137</div>
+            <div class="response">
+              > OPERATIVE SINCE: 2022-03-15<br>
+              > DIVISION: RED TEAM<br>
+              <span class="clearance-level">CLEARANCE LEVEL: DELTA</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="prompt">stats --summary</div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="response">> COMPLETED OPS</div>
+            <div class="stat-value">27</div>
+          </div>
+          <div class="stat-card">
+            <div class="response">> ACTIVE OPS</div>
+            <div class="stat-value">3</div>
+          </div>
+          <div class="stat-card">
+            <div class="response">> SUCCESS RATE</div>
+            <div class="stat-value">96%</div>
+          </div>
+          <div class="stat-card">
+            <div class="response">> DAYS ACTIVE</div>
+            <div class="stat-value">428</div>
+          </div>
+        </div>
+        
+        <div class="prompt">operations --recent --limit=5</div>
+        <div class="operations-list">
+          <div class="operation-item">
+            <div class="response">> OP#2947 | TARGET: FINANCE_SERVERS</div>
+            <div class="response"><span class="status status-online"></span> COMPLETED</div>
+          </div>
+          <div class="operation-item">
+            <div class="response">> OP#2912 | TARGET: CORP_NETWORK</div>
+            <div class="response"><span class="status status-online"></span> COMPLETED</div>
+          </div>
+          <div class="operation-item">
+            <div class="response">> OP#2898 | TARGET: RESEARCH_DB</div>
+            <div class="response"><span class="status status-busy"></span> IN PROGRESS</div>
+          </div>
+          <div class="operation-item">
+            <div class="response">> OP#2873 | TARGET: GOV_SYSTEM</div>
+            <div class="response"><span class="status status-online"></span> COMPLETED</div>
+          </div>
+          <div class="operation-item">
+            <div class="response">> OP#2855 | TARGET: INDUSTRIAL_CTRL</div>
+            <div class="response"><span class="status status-busy"></span> IN PROGRESS</div>
+          </div>
+        </div>
+        
+        <div class="prompt">security --advisory</div>
+        <div class="response">
+          > NEXT BRIEFING: 2023-11-15 08:00 UTC<br>
+          > PENDING TRAINING: ADVANCED TRACKING (DUE: 2023-12-01)<br>
+          > <span class="status status-busy"></span> SYSTEM UPDATE REQUIRED
+        </div>
+          <div class="terminal-footer">
+        <div class="footer-grid">
+          <div class="footer-logo">
+            <span class="logo">ARS//SEC</span>
+            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
+          </div>
+          
+          <div class="footer-links">
+            <div class="footer-section">
+              <div class="footer-prompt">connect --social</div>
+              <div class="footer-links-group">
+                <a href="https://twitter.com" target="_blank" class="footer-link">
+                  <span class="status status-online"></span> TWITTER
+                </a>
+                <a href="https://github.com" target="_blank" class="footer-link">
+                  <span class="status status-online"></span> GITHUB
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="footer-link">
+                  <span class="status status-online"></span> LINKEDIN
+                </a>
+              </div>
+            </div>
+            
+            <div class="footer-section">
+              <div class="footer-prompt">access --legal</div>
+              <div class="footer-links-group">
+                <a href="/privacy" class="footer-link">
+                  <span class="status status-busy"></span> PRIVACY
+                </a>
+                <a href="/terms" class="footer-link">
+                  <span class="status status-busy"></span> TERMS
+                </a>
+                <a href="/contact" class="footer-link">
+                  <span class="status status-busy"></span> CONTACT
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-copyright">
+          <div class="response">
+            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
+            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Terminal Footer -->
+  
+  <script src="/static/js/script.js"></script>
+</body>
+</html>

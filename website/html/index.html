@@ -112,60 +112,50 @@
           </div>
         </div>
       </div>
-      </div>
     </div>
   </div>
-
-
   <script src="/static/js/script.js"></script>
   <script>
-
-    // making command dynamic changes
-
     const command = document.querySelector('.terminal-input');
     command.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-        check();
-        }
+      if (event.key === 'Enter') {
+        const ter_body = document.querySelector('.terminal-body');
+        const content = command.value.trim().toLowerCase();
+
+        const response = document.createElement('div');
+        response.className = 'response';
+
+        const promptLine = document.createElement('div');
+        promptLine.className = 'prompt typing';
+        promptLine.textContent = `processing --command=${content}`;
+
+        const outputLine = document.createElement('div');
+        outputLine.append('> ');
+
+        const outputContent = getCommandResponse(content);
+
+        const safeText = document.createTextNode(outputContent);
+        outputLine.appendChild(safeText);
+
+        response.appendChild(promptLine);
+        response.appendChild(outputLine);
+
+        ter_body.insertBefore(response, command.closest('.prompt').nextSibling);
+        command.value = '';
+
+      }
     });
 
-    function check() {
-        const ter_body = document.querySelector('.terminal-body');
-        let content = command.value.trim();  // Added trim() to remove whitespace
-        const arr = ['help', 'info', 'contact', 'options'];  
-        
-        let element = document.createElement('p');
-        if (arr.includes(content)) {
-        switch (content) {
-            case 'help':
-            element.textContent = `Processing: ${content}`;  
-            break;
-            case 'info':
-            element.textContent = `Processing: ${content}`;  
-            break;
-            case 'contact':
-            element.textContent = `Processing: ${content}`;  
-            break;
-            case 'options':
-            element.textContent = `Processing: ${content}`;  
-            break;
-        }
-        }
-        else {
-        element.textContent = `Command "${content}" not found`;  // Fixed textContent (was lowercase)
-        }
-        
-        // Create prompt div properly
-        const br = document.createElement('br')
-        const promptDiv = document.createElement('div');
-        promptDiv.className = 'prompt';
-        promptDiv.textContent = 'command --execute';
-        
-        ter_body.appendChild(promptDiv);
-        ter_body.appendChild(element);
-        ter_body.appendChild(br)
-        command.value = '';
+    function getCommandResponse(cmd) {
+      const commands = {
+        //for another day we will complete it , not now any way
+        help: 'Available commands: tools, services, clear',
+        clear: 'Terminal cleared',
+      };
+
+      return commands[cmd] || `Command "${cmd}" not found. Type "help" for available commands.`;
     }
+
   </script>
 </body>
 </html>

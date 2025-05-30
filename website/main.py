@@ -5,7 +5,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-
 import sqlite3
 
 app = FastAPI()
@@ -49,6 +48,11 @@ def reg(username : str = Form(...), password : str = Form(...)):
 @app.get('/passwd')
 def passwd():
     return FileResponse('html/pass.html')
+
+
+@app.get('/profile')
+def profile():
+    return FileResponse('html/profile.html')
 
 @app.get('/services')
 def sotre():

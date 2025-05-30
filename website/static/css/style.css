@@ -16,6 +16,31 @@
   --glow: 0 0 5px var(--primary), 0 0 10px var(--primary);
 }
 
+
+/* Add to CSS */
+.terminal-window {
+  position: relative;
+}
+
+.terminal-window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(rgba(0,102,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,102,255,0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.terminal-body {
+  position: relative;
+  z-index: 1;
+}
 /* Base Styles */
 * {
   margin: 0;
@@ -284,27 +309,60 @@ nav {
 }
 
 /* Status Indicators */
+
 .status {
   display: inline-block;
+  position: relative;
   width: 10px;
   height: 10px;
   border-radius: 50%;
   margin-right: 0.5rem;
 }
 
+
+.status::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+
 .status-online {
   background: #00ff00;
   box-shadow: 0 0 10px #00ff00;
 }
 
+
+.status-online::after {
+  box-shadow: 0 0 8px #00ff00;
+  animation: pulse 1.5s infinite;
+}
+
+
 .status-offline {
   background: #ff0000;
+}
+
+
+.status-offline::after {
+  box-shadow: 0 0 8px #ff0000;
 }
 
 .status-busy {
   background: #ffcc00;
   animation: pulse 2s infinite;
 }
+
+
+.status-busy::after {
+  box-shadow: 0 0 8px #ffcc00;
+}
+
 
 /* Timeline */
 .timeline {
@@ -437,6 +495,27 @@ nav {
   color: var(--text-dim);
 }
 
+/* Add to CSS */
+.btn, .footer-link, .nav-links a {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after, .footer-link::after, .nav-links a::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: 0.5s;
+}
+
+.btn:hover::after, .footer-link:hover::after, .nav-links a:hover::after {
+  left: 100%;
+}
+
 @media (max-width: 768px) {
   .footer-grid {
     grid-template-columns: 1fr;
@@ -453,3 +532,4 @@ nav {
     grid-template-columns: 1fr;
   }
 }
+
