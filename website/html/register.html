@@ -26,6 +26,30 @@
       font-weight: bold;
       margin-left: 0.5rem;
     }
+    
+    .email-hint {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      margin-top: 0.3rem;
+    }
+    
+    .error-field {
+      border-color: var(--primary) !important;
+      box-shadow: 0 0 5px var(--primary) !important;
+      animation: pulse-error 0.5s 3;
+    }
+
+    @keyframes pulse-error {
+      0%, 100% { border-color: var(--primary); }
+      50% { border-color: #ff0000; }
+    }
+
+    .email-error {
+      color: var(--primary);
+      border-left: 1px solid var(--primary);
+      margin: 1rem 0;
+      padding-left: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -36,7 +60,6 @@
       <a href="/login">login</a>
       <a href="/register" class="active">register</a>
       <a href="/services">services</a>
-      
     </div>
   </nav>
 
@@ -58,21 +81,14 @@
         
         <div class="auth-container">
           <div class="auth-step">
-            <div class="prompt">agent --create --callsign</div>
-            <div class="response">
-              > ENTER YOUR IDENTIFICATION DATA<br>
-              > ALL FIELDS ARE MANDATORY
-            </div>
-            
-            <form id="registerForm" method="post">
+            <div class="prompt">agent --create --contact</div>
+            <form id="registerForm" method="post" action="/register">
               <div class="form-group">
-                <label for="callsign">CALLSIGN:</label>
-                <input type="text" id="callsign" required placeholder="agent_x137" minlength="5" maxlength="14">
-              </div>
-              
-              <div class="form-group">
-                <label for="e-mail">TYPE YOUR E-MAIL:</label>
-                <input type="email" id="e-mail" required placeholder="example@gmail.com">
+                <label for="email">SECURE COM LINK:</label>
+                <input type="email" id="email" name="email" required
+                       placeholder="agent@secure-domain.com"
+                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                <div class="email-hint">Valid secure communication email only</div>
               </div>
 
               <button type="submit" class="btn" id="confirmbtn">
@@ -80,59 +96,61 @@
               </button>
             </form>
           </div>
-
         </div>
 
         <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
-          </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
-              </div>
+          <div class="footer-grid">
+            <div class="footer-logo">
+              <span class="logo">ARS//SEC</span>
+              <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
             </div>
             
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+            <div class="footer-links">
+              <div class="footer-section">
+                <div class="footer-prompt">connect --social</div>
+                <div class="footer-links-group">
+                  <a href="https://twitter.com" target="_blank" class="footer-link">
+                    <span class="status status-online"></span> TWITTER
+                  </a>
+                  <a href="https://github.com" target="_blank" class="footer-link">
+                    <span class="status status-online"></span> GITHUB
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" class="footer-link">
+                    <span class="status status-online"></span> LINKEDIN
+                  </a>
+                </div>
+              </div>
+              
+              <div class="footer-section">
+                <div class="footer-prompt">access --legal</div>
+                <div class="footer-links-group">
+                  <a href="/privacy" class="footer-link">
+                    <span class="status status-busy"></span> PRIVACY
+                  </a>
+                  <a href="/terms" class="footer-link">
+                    <span class="status status-busy"></span> TERMS
+                  </a>
+                  <a href="/contact" class="footer-link">
+                    <span class="status status-busy"></span> CONTACT
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+          
+          <div class="footer-copyright">
+            <div class="response">
+              > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
+              > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   </div>
 
+  <script>
+  
+  </script>
 </body>
 </html>

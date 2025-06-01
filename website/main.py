@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import sqlite3
+from passgen import generate
 
 app = FastAPI()
 
@@ -28,22 +29,25 @@ def log():
 
 @app.post('/login')
 def cred(username : str = Form(...), password : str = Form(...)):
-    with sqlite3.connect('dbs/users.db') as userdb:
-        usercurs = userdb.cursor()
-        usercurs.execute('SELECT * FROM users WHERE username = ?',(username,))
-        data = usercurs.fetchone()
-        if data:
-            if password == data[1]:
-                return HTMLResponse(status_code=200)
-            else: return HTMLResponse(status_code=401)
+    return {'null':'null'}
+
+
+
+
 
 @app.get('/register')
 def contact():
     return FileResponse('html/register.html')
 
 @app.post('/register')
-def reg(username : str = Form(...), password : str = Form(...)):
+def reg(email : str = Form(...)):
+    return {'hello':'hello'}
+
+
+@app.get('/register/passwd')
+def make_passwd():
     pass
+
 
 @app.get('/passwd')
 def passwd():
