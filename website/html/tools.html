@@ -5,151 +5,108 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Hacker Tools</title>
   <link rel="stylesheet" href="/static/css/style.css">
-  <script src="/static/js/script.js"></script>
-  <style>
-    .tool-category {
-      margin-bottom: 3rem;
-    }
-    
-    .tool-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1.5rem;
-      margin-top: 1rem;
-    }
-    
-    .tool-card {
-      border: var(--border);
-      padding: 1rem;
-      transition: all 0.3s;
-    }
-    
-    .tool-card:hover {
-      background: #001100;
-      transform: translateY(-3px);
-    }
-    
-    .tool-card h3 {
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-    
-    .tool-card p {
-      color: var(--text-dim);
-      font-size: 0.9rem;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-       <a href="/">home</a>
-       <a href="/login">login</a>
-       
-      <a href="/services">services</a>
-      
-      
-      <a href="/history">history</a>
-      <a href="/tools" class="active">tools</a>
-    </div>
-  </nav>
-
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt">tools --list --category=all</div>
-        
-        <div class="response">
-          <div class="tool-category">
-            <h3>PENETRATION TESTING</h3>
-            <div class="tool-grid">
-              <div class="tool-card">
-                <h3>NETSPLOIT</h3>
-                <p>Advanced network vulnerability scanner</p>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link active"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
+
+    <main class="content-main-container" id="toolsMainContainer">
+      <div class="content-panel-window" id="toolsContentWindow">
+        <div class="window-header" id="toolsHeader">
+          <div class="window-title" id="toolsWindowTitle">
+            ARS//SEC :: Advanced Security Tools
+          </div>
+        </div>
+
+        <div class="content-panel-body" id="toolsBody">
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-network-wired"></i> PENETRATION TESTING</h2>
+            <div class="grid-layout tools-grid">
+              <div class="content-card tool-card">
+                <div class="card-header">
+                  <h3>NETSPLOIT</h3>
+                  <span class="tag premium-tag">PREMIUM</span>
+                </div>
+                <p>Advanced network vulnerability scanner with real-time threat detection and automated exploitation capabilities.</p>
+                <div class="card-actions">
+                  <a href="/services" class="action-btn"><i class="fas fa-shopping-cart"></i> Get License</a>
+                </div>
               </div>
-              <div class="tool-card">
-                <h3>WEBFIRE</h3>
-                <p>Web application firewall bypass toolkit</p>
+              
+              <div class="content-card tool-card">
+                <div class="card-header">
+                  <h3>WEBFIRE</h3>
+                  <span class="tag premium-tag">PREMIUM</span>
+                </div>
+                <p>Web application firewall bypass toolkit with AI-driven evasion techniques and custom rule engine.</p>
+                <div class="card-actions">
+                  <a href="/services" class="action-btn"><i class="fas fa-shopping-cart"></i> Get License</a>
+                </div>
               </div>
             </div>
           </div>
           
-          <div class="tool-category">
-            <h3>FORENSICS</h3>
-            <div class="tool-grid">
-              <div class="tool-card">
-                <h3>MEMDUMP</h3>
-                <p>Memory analysis and extraction tool</p>
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-search"></i> FORENSICS</h2>
+            <div class="grid-layout tools-grid">
+              <div class="content-card tool-card">
+                <div class="card-header">
+                  <h3>MEMDUMP</h3>
+                  <span class="tag premium-tag">PREMIUM</span>
+                </div>
+                <p>Advanced memory analysis and extraction tool with deep process inspection and malware detection capabilities.</p>
+                <div class="card-actions">
+                  <a href="/services" class="action-btn"><i class="fas fa-shopping-cart"></i> Get License</a>
+                </div>
               </div>
-              <div class="tool-card">
-                <h3>HEXHUNTER</h3>
-                <p>Binary file analyzer with pattern detection</p>
+              
+              <div class="content-card tool-card">
+                <div class="card-header">
+                  <h3>HEXHUNTER</h3>
+                  <span class="tag premium-tag">PREMIUM</span>
+                </div>
+                <p>Binary file analyzer with advanced pattern detection and automated reverse engineering features.</p>
+                <div class="card-actions">
+                  <a href="/services" class="action-btn"><i class="fas fa-shopping-cart"></i> Get License</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="prompt">download --tool=[name]</div>
-        <div class="response">
-          > ACCESS DENIED: VERIFICATION REQUIRED<br>
-          > VISIT OUR <a href="services.html" style="color: var(--text);">services</a> FOR LICENSES
-        </div>
 
-        <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
-          </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
+          <div class="content-section">
+            <div class="info-panel">
+              <div class="info-panel-header">
+                <i class="fas fa-info-circle"></i> ACCESS INFORMATION
               </div>
-            </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+              <div class="info-panel-body">
+                <p>All tools require valid license and authentication. Visit our <a href="/services">services</a> page to acquire licenses.</p>
               </div>
             </div>
           </div>
         </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
-          </div>
-        </div>
       </div>
-      </div>
-    </div>
+    </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
   </div>
+  
+  <script src="/static/js/script.js"></script>
 </body>
 </html>

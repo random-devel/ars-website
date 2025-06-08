@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Agent Registration</title>
   <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* Registration-specific styles */
     .auth-container {
@@ -53,104 +55,114 @@
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-      <a href="/">home</a>
-      <a href="/login">login</a>
-      <a href="/register" class="active">register</a>
-      <a href="/services">services</a>
-    </div>
-  </nav>
-
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt">access --request --level=new_agent</div>
-        
-        <div class="response">
-          > INITIATING CLEARANCE PROTOCOL<br>
-          > <span class="status status-busy"></span> VERIFICATION REQUIRED<br>
-          > THIS PROCESS IS MONITORED AND LOGGED
-        </div>
-        
-        <div class="auth-container">
-          <div class="auth-step">
-            <div class="prompt">agent --create --contact</div>
-            <form id="registerForm" method="post" action="/register">
-              <div class="form-group">
-                <label for="email">SECURE COM LINK:</label>
-                <input type="email" id="email" name="email" required
-                       placeholder="agent@secure-domain.com"
-                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                <div class="email-hint">Valid secure communication email only</div>
-              </div>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/register" class="nav-link active"><i class="fas fa-user-plus"></i> Register</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
 
-              <button type="submit" class="btn" id="confirmbtn">
-                <span class="status status-online"></span> REQUEST CLEARANCE
-              </button>
-            </form>
+    <main class="content-main-container" id="registerMainContainer">
+      <div class="content-panel-window" id="registerContentWindow">
+        <div class="window-header" id="registerHeader">
+          <div class="window-title" id="registerWindowTitle">
+            ARS//SEC :: Agent Registration Protocol
           </div>
         </div>
 
-        <div class="terminal-footer">
-          <div class="footer-grid">
-            <div class="footer-logo">
-              <span class="logo">ARS//SEC</span>
-              <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
-            </div>
-            
-            <div class="footer-links">
-              <div class="footer-section">
-                <div class="footer-prompt">connect --social</div>
-                <div class="footer-links-group">
-                  <a href="https://twitter.com" target="_blank" class="footer-link">
-                    <span class="status status-online"></span> TWITTER
-                  </a>
-                  <a href="https://github.com" target="_blank" class="footer-link">
-                    <span class="status status-online"></span> GITHUB
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" class="footer-link">
-                    <span class="status status-online"></span> LINKEDIN
-                  </a>
+        <div class="content-panel-body" id="registerBody">
+          <div class="content-section">
+            <div class="info-panel">
+              <div class="info-panel-header">
+                <i class="fas fa-shield-alt"></i> CLEARANCE PROTOCOL
+              </div>
+              <div class="info-panel-body">
+                <div class="status-item">
+                  <i class="fas fa-sync fa-spin"></i>
+                  <span>Initiating verification process</span>
+                </div>
+                <div class="status-item">
+                  <i class="fas fa-eye"></i>
+                  <span>This process is monitored and logged</span>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <div class="auth-container">
+              <h2 class="section-title"><i class="fas fa-user-plus"></i> NEW AGENT REGISTRATION</h2>
               
-              <div class="footer-section">
-                <div class="footer-prompt">access --legal</div>
-                <div class="footer-links-group">
-                  <a href="/privacy" class="footer-link">
-                    <span class="status status-busy"></span> PRIVACY
-                  </a>
-                  <a href="/terms" class="footer-link">
-                    <span class="status status-busy"></span> TERMS
-                  </a>
-                  <a href="/contact" class="footer-link">
-                    <span class="status status-busy"></span> CONTACT
-                  </a>
-                </div>
+              <div class="auth-form-container">
+                <form id="registerForm" method="post" action="/register" class="auth-form">
+                  <div class="form-group">
+                    <label for="callsign">AGENT CALLSIGN:</label>
+                    <div class="input-group">
+                      <span class="input-icon"><i class="fas fa-user-secret"></i></span>
+                      <input type="text" 
+                             id="callsign" 
+                             name="callsign" 
+                             required
+                             placeholder="AGENT_XXXX"
+                             minlength="6"
+                             maxlength="16"
+                             class="form-input">
+                    </div>
+                    <div class="input-hint">
+                      <i class="fas fa-info-circle"></i>
+                      6-16 characters
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="password">SECURITY PASSPHRASE:</label>
+                    <div class="input-group">
+                      <span class="input-icon"><i class="fas fa-key"></i></span>
+                      <input type="password" 
+                             id="password" 
+                             name="password" 
+                             required
+                             placeholder="••••••••••••"
+                             class="form-input">
+                    </div>
+                    <div class="input-hint">
+                      <i class="fas fa-info-circle"></i>
+                      Minimum 12 characters, include numbers and special characters
+                    </div>
+                  </div>
+
+                  <div class="form-actions">
+                    <button type="submit" class="action-btn submit-btn">
+                      <i class="fas fa-user-plus"></i> REQUEST CLEARANCE
+                    </button>
+                  </div>
+
+                  <div class="auth-links">
+                    <p>Already have clearance? <a href="/login">Access Portal</a></p>
+                  </div>
+                </form>
               </div>
-            </div>
-          </div>
-          
-          <div class="footer-copyright">
-            <div class="response">
-              > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-              > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </main>
 
-  <script>
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
+  </div>
   
-  </script>
+  <script src="/static/js/script.js"></script>
 </body>
 </html>

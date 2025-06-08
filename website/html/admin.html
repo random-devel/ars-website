@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | Admin Panel</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .admin-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--neon-blue);
+      padding: 1rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--neon-blue);
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .stat-label {
+      color: #888;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    
+    .admin-table th,
+    .admin-table td {
+      padding: 0.75rem;
+      border: 1px solid var(--neon-blue);
+      text-align: left;
+    }
+    
+    .admin-table th {
+      background: rgba(0, 123, 255, 0.1);
+      font-family: 'Orbitron', sans-serif;
+    }
+    
+    .action-btn {
+      background: transparent;
+      border: 1px solid var(--neon-blue);
+      color: var(--neon-blue);
+      padding: 0.25rem 0.5rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .action-btn:hover {
+      background: var(--neon-blue);
+      color: black;
+    }
+    
+    .status-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    
+    .status-active {
+      background: #00ff00;
+    }
+    
+    .status-inactive {
+      background: #ff0000;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
+      </div>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/admin" class="nav-link active"><i class="fas fa-user-shield"></i> Admin</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">ADMIN:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">AUTHORIZED</span>
+      </div>
+    </nav>
+
+    <main class="content-main-container" id="mainContainer">
+      <div class="content-panel-window" id="mainContentWindow">
+        <div class="window-header" id="mainHeader">
+          <div class="window-title" id="mainWindowTitle">
+            ARS//SEC :: Administrative Control Panel
+          </div>
+        </div>
+
+        <div class="content-panel-body" id="mainBody">
+          <div class="content-section">
+            <div class="agent-profile-header">
+              <div class="agent-avatar">
+                <i class="fas fa-user-shield fa-3x"></i>
+              </div>
+              <div class="agent-info">
+                <h2>ADMIN_CONSOLE <span class="clearance-badge">CLEARANCE: OMEGA</span></h2>
+                <div class="agent-details">
+                  <p><i class="fas fa-fingerprint"></i> Admin ID: ADMIN-7XN3-OMEGA</p>
+                  <p><i class="fas fa-shield-alt"></i> Security Level: Maximum</p>
+                </div>
+              </div>
+              <div class="system-status">
+                <div class="status-icon"><i class="fas fa-lock"></i> Admin Mode Active</div>
+                <div class="status-icon"><i class="fas fa-user-check"></i> Identity Verified</div>
+                <div class="status-icon"><i class="fas fa-shield-virus"></i> Security Active</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-chart-bar"></i> SYSTEM STATISTICS</h2>
+            <div class="admin-stats-grid">
+              <div class="stat-card">
+                <div class="stat-value">247</div>
+                <div class="stat-label">Active Users</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Security Alerts</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">98.7%</div>
+                <div class="stat-label">System Uptime</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-value">1.2TB</div>
+                <div class="stat-label">Data Processed</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-users"></i> USER MANAGEMENT</h2>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>User ID</th>
+                    <th>Status</th>
+                    <th>Clearance</th>
+                    <th>Last Active</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>AGENT_7XN3</td>
+                    <td><span class="status-indicator status-active"></span>Active</td>
+                    <td>DELTA_IV</td>
+                    <td>2024-02-20 14:30</td>
+                    <td>
+                      <button class="action-btn"><i class="fas fa-edit"></i></button>
+                      <button class="action-btn"><i class="fas fa-ban"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>AGENT_9YM4</td>
+                    <td><span class="status-indicator status-inactive"></span>Inactive</td>
+                    <td>BETA_II</td>
+                    <td>2024-02-19 09:15</td>
+                    <td>
+                      <button class="action-btn"><i class="fas fa-edit"></i></button>
+                      <button class="action-btn"><i class="fas fa-ban"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> SECURITY ALERTS</h2>
+            <div class="table-container">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Alert ID</th>
+                    <th>Type</th>
+                    <th>Severity</th>
+                    <th>Timestamp</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ALERT-001</td>
+                    <td>Failed Login Attempt</td>
+                    <td>Medium</td>
+                    <td>2024-02-20 13:45</td>
+                    <td><button class="action-btn">Investigate</button></td>
+                  </tr>
+                  <tr>
+                    <td>ALERT-002</td>
+                    <td>Unusual Traffic Pattern</td>
+                    <td>High</td>
+                    <td>2024-02-20 12:30</td>
+                    <td><button class="action-btn">Investigate</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-cog"></i> SYSTEM CONTROLS</h2>
+            <div class="grid-layout">
+              <div class="content-card">
+                <div class="card-header">
+                  <h3>MAINTENANCE MODE</h3>
+                </div>
+                <div class="card-details">
+                  <button class="action-btn">Enable Maintenance Mode</button>
+                </div>
+              </div>
+              
+              <div class="content-card">
+                <div class="card-header">
+                  <h3>BACKUP SYSTEM</h3>
+                </div>
+                <div class="card-details">
+                  <button class="action-btn">Initiate Backup</button>
+                </div>
+              </div>
+              
+              <div class="content-card">
+                <div class="card-header">
+                  <h3>SECURITY SCAN</h3>
+                </div>
+                <div class="card-details">
+                  <button class="action-btn">Run Security Scan</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ADMINISTRATIVE ACCESS ONLY. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
+  </div>
+  
+  <script src="/static/js/script.js"></script>
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html> 

@@ -2,98 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-      <title>ARS//SEC | NOT FOUND!!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARS//SEC | 404 Not Found</title>
   <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-       <a href="/">home</a><a href="/login" class="active">login</a>
-      <a href="/tools">tools</a>
-      <a href="/services">services</a>
-    </div>
-  </nav>
-
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt">access --request --path=/unknown</div>
-        <div class="response">
-          > <span class="status status-busy"></span> ERROR 404: TARGET NOT FOUND<br>
-          > <span class="blink">_</span>
-        </div>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
 
-        <div class="prompt">trace --route</div>
-        <div class="response">
-          > POSSIBLE ORIGINS:<br>
-          > <a href="/">/home</a><br>
-          > <a href="/tools">/tools</a><br>
-          > <a href="/services">/services</a>
-        </div>
-
-        <div class="prompt">scan --threat-level</div>
-        <div class="response">
-          > <span class="status status-online"></span> NO INTRUSION DETECTED<br>
-          > THIS IS A ROUTING ERROR
-        </div>
-
-        <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
+    <main class="content-main-container" id="errorMainContainer">
+      <div class="content-panel-window" id="errorContentWindow">
+        <div class="window-header" id="errorHeader">
+          <div class="window-title" id="errorWindowTitle">
+            ARS//SEC :: System Error
           </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
-              </div>
+        </div>
+
+        <div class="content-panel-body" id="errorBody">
+          <div class="error-section text-center">
+            <div class="error-icon">
+              <i class="fas fa-exclamation-triangle fa-5x"></i>
             </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+            <h1 class="error-code">ERROR 404</h1>
+            <h2 class="error-message">TARGET NOT FOUND</h2>
+            <div class="error-details">
+              The requested resource could not be located on this server.
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-map-signs"></i> NAVIGATION OPTIONS</h2>
+            <div class="grid-layout navigation-grid">
+              <div class="content-card navigation-card">
+                <div class="card-header">
+                  <h3><i class="fas fa-home"></i> HOME</h3>
+                </div>
+                <p>Return to the main dashboard</p>
+                <div class="card-actions">
+                  <a href="/" class="action-btn">Access Home</a>
+                </div>
+              </div>
+
+              <div class="content-card navigation-card">
+                <div class="card-header">
+                  <h3><i class="fas fa-tools"></i> TOOLS</h3>
+                </div>
+                <p>Browse available security tools</p>
+                <div class="card-actions">
+                  <a href="/tools" class="action-btn">View Tools</a>
+                </div>
+              </div>
+
+              <div class="content-card navigation-card">
+                <div class="card-header">
+                  <h3><i class="fas fa-cogs"></i> SERVICES</h3>
+                </div>
+                <p>Explore our security services</p>
+                <div class="card-actions">
+                  <a href="/services" class="action-btn">View Services</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+
+          <div class="content-section">
+            <div class="info-panel">
+              <div class="info-panel-header">
+                <i class="fas fa-shield-alt"></i> SECURITY STATUS
+              </div>
+              <div class="info-panel-body">
+                <div class="status-item">
+                  <i class="fas fa-check-circle"></i>
+                  <span>No security threats detected</span>
+                </div>
+                <div class="status-item">
+                  <i class="fas fa-info-circle"></i>
+                  <span>This is a routing error, not a security breach</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-    </div>
+    </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
   </div>
-
+  
   <script src="/static/js/script.js"></script>
 </body>
 </html>

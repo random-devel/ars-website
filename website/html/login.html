@@ -5,151 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Secure Access</title>
   <link rel="stylesheet" href="/static/css/style.css">
-  <style>
-    /* Login-specific enhancements */
-    .auth-container {
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .auth-switch {
-      text-align: center;
-      margin-top: 2rem;
-      border-top: 1px solid var(--primary);
-      padding-top: 1.5rem;
-    }
-
-    .auth-switch a {
-      color: var(--secondary);
-      border-bottom: 1px dashed var(--secondary);
-      font-size: 0.9rem;
-    }
-
-    .new-agent-notice {
-      background: rgba(0, 102, 255, 0.1);
-      border-left: 3px solid var(--secondary);
-      padding: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .two-factor {
-      margin-top: 1.5rem;
-      border-top: var(--border);
-      padding-top: 1.5rem;
-    }
-
-    .recovery-link {
-      text-align: right;
-      margin-top: 0.5rem;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-       <a href="/">home</a>
-       <a href="/login" class="active">login</a>
-      <a href="/services">services</a>
-      
-    </div>
-  </nav>
+  <div class="site-wrapper">
 
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt">access --request --auth=secure</div>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link active"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
 
-        <div class="auth-container">
-          
-          
-          <form id="loginForm" class="auth-form" method="post" action="/login">
-            <div class="form-group">
-              <label for="username">CALLSIGN:</label>
-              <input type="text" id="username" name="username" required
-                     placeholder="agent_id" autocomplete="off">
-            </div>
-
-            <div class="form-group">
-              <label for="password">CODEPHRASE:</label>
-              <input type="password" id="password" name="password" required
-                     placeholder="••••••••" autocomplete="current-password">
-              <div class="recovery-link">
-                <a href="recovery.html">forgot codephrase?</a>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <button type="submit" class="btn">
-                <span class="status status-online"></span> INITIATE ACCESS
-              </button>
-            </div>
-          </form>
-
-          <div class="auth-switch">
-            <p>NO ACTIVE CREDENTIALS? <a href="/register">REQUEST NEW CLEARANCE</a></p>
+    <main class="terminal-main-container" id="loginMainContainer">
+      <div class="content-panel-window auth-panel-window" id="loginContentWindow"> <div class="terminal-window-header" id="loginHeader">
+          <div class="window-controls">
+            <span class="control-btn" id="loginCloseBtn"></span>
+            <span class="control-btn" id="loginMinimizeBtn"></span>
+            <span class="control-btn" id="loginMaximizeBtn"></span>
+          </div>
+          <div class="window-title" id="loginWindowTitle">
+            ARS//SEC :: Secure Access Grid
           </div>
         </div>
 
-
-        <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
+        <div class="content-panel-body auth-panel-body" id="loginBody">
+          <div class="auth-header-prompt">
+            <span class="prompt-prefix static-prompt-prefix">&gt;&gt;</span>
+            <span class="command-text">access --request --auth=secure --level=AGENT</span>
           </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
+
+          <div class="auth-container">
+            <form id="loginForm" class="auth-form" method="post" action="/login">
+              <div class="form-group">
+                <label for="username">CALLSIGN:</label>
+                <input type="text" id="username" name="username" required placeholder="agent_id" autocomplete="off">
               </div>
-            </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+
+              <div class="form-group">
+                <label for="password">CODEPHRASE:</label>
+                <input type="password" id="password" name="password" required placeholder="••••••••••••" autocomplete="current-password">
+                <div class="recovery-link">
+                  <a href="recovery.html">Forgot Codephrase?</a>
+                </div>
               </div>
+
+              <div class="form-group submit-group">
+                <button type="submit" class="action-btn login-submit-btn">
+                  <i class="fas fa-key"></i> INITIATE ACCESS
+                </button>
+              </div>
+            </form>
+
+            <div class="auth-switch">
+              <p>NO ACTIVE CREDENTIALS? <a href="/register">REQUEST CLEARANCE</a></p>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
-          </div>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
 
+          <div class="terminal-footer-content" id="loginPageFooterContent">
+            <div class="footer-grid">
+              <div class="footer-logo-area"> <span class="logo-text footer-logo-text">ARS//SEC</span>
+                <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
+              </div>
+              <div class="footer-links-area"> <div class="footer-column">
+                  <h4 class="footer-column-title">SYSTEM LINKS</h4>
+                  <a href="https://twitter.com" target="_blank" class="footer-link-item"><i class="fab fa-twitter"></i> Twitter Feed</a>
+                  <a href="https://github.com" target="_blank" class="footer-link-item"><i class="fab fa-github"></i> GitHub Ops</a>
+                  <a href="https://linkedin.com" target="_blank" class="footer-link-item"><i class="fab fa-linkedin"></i> Intel Network</a>
+                </div>
+                <div class="footer-column">
+                  <h4 class="footer-column-title">REGULATIONS</h4>
+                  <a href="/privacy" class="footer-link-item"><i class="fas fa-user-shield"></i> Privacy Protocol</a>
+                  <a href="/terms" class="footer-link-item"><i class="fas fa-gavel"></i> Terms of Engagement</a>
+                  <a href="/contact" class="footer-link-item"><i class="fas fa-headset"></i> Secure Comms</a>
+                </div>
+              </div>
+            </div>
+            <div class="footer-copyright-notice">
+              &gt; © <span id="footerCopyrightYear"></span> ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
+              &gt; UNAUTHORIZED ACCESS PROHIBITED | <span class="status-dot offline"></span> SYSTEM MONITORED 24/7
+            </div>
+          </div>
+
+        </div> </div> </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+        <p>&copy; <span id="currentYearLogin"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
+
+  </div> <script src="/static/js/script.js"></script>
   <script>
-    
+    // Specific JS for login page (if any) can go here or be in the main script.js with checks.
+    // For example, updating the copyright year in the specific footer.
+    const footerCopyrightYear = document.getElementById('footerCopyrightYear');
+    if (footerCopyrightYear) {
+        footerCopyrightYear.textContent = new Date().getFullYear();
+    }
+    const currentYearLogin = document.getElementById('currentYearLogin');
+    if (currentYearLogin) {
+        currentYearLogin.textContent = new Date().getFullYear();
+    }
   </script>
 </body>
 </html>

@@ -3,144 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ARS//SEC | Cyber services</title>
+  <title>ARS//SEC | Cyber Services</title>
   <link rel="stylesheet" href="/static/css/style.css">
-  <script src="/static/js/script.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-       <a href="/">home</a>
-       <a href="/login">login</a>
-      <a href="/services" class="active">services</a>
-      
-      
-      <a href="/history">history</a>
-      <a href="/tools">tools</a>
-    </div>
-  </nav>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
+      </div>
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link active"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
 
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-      </div>
-      <div class="terminal-body">
-        <div class="prompt">services --list</div>
-        
-        <div class="response">
-          <h3>CYBER SERVICES</h3>
-          <div class="grid">
-            <div class="card">
-              <h3>NETSPLOIT PRO</h3>
-              <p>Complete network penetration testing suite</p>
-              <div class="price">$499<span>/year</span></div>
-              <div class="quantity-control">
-                
-              </div>
-              <button class="btn">ADD TO CART</button>
-              <div class="tag">BESTSELLER</div>
-            </div>
-            
-            <div class="card">
-              <h3>WEBFIRE 2.0</h3>
-              <p>Advanced web application firewall bypass toolkit</p>
-              <div class="price">$349<span>/year</span></div>
-              <div class="quantity-control">
-                
-              </div>
-              <button class="btn">ADD TO CART</button>
-              <div class="tag">NEW</div>
-            </div>
-          </div>
-          
-          <h3>TRAINING PROGRAMS</h3>
-          <div class="grid">
-            <div class="card">
-              <h3>RED TEAM BOOTCAMP</h3>
-              <p>40-hour intensive training program</p>
-              <div class="price">$1,299</div>
-              <div class="details">
-                <p><span class="status status-online"></span> Next session: 2023-11-15</p>
-                <p>Seats remaining: 8/20</p>
-              </div>
-              <button class="btn">ENROLL NOW</button>
-            </div>
-            
-            <div class="card">
-              <h3>MALWARE ANALYSIS</h3>
-              <p>Reverse engineering and threat analysis</p>
-              <div class="price">$899</div>
-              <div class="details">
-                <p><span class="status status-online"></span> Self-paced</p>
-                <p>Access: 1 year</p>
-              </div>
-              <button class="btn">ENROLL NOW</button>
-            </div>
+    <main class="content-main-container" id="servicesMainContainer">
+      <div class="content-panel-window" id="servicesContentWindow">
+        <div class="window-header" id="servicesHeader">
+          <div class="window-title" id="servicesWindowTitle">
+            ARS//SEC :: Service Matrix & Intel Packages
           </div>
         </div>
-        
-        <div class="prompt">payment --method=select</div>
-        <div class="response">
-          > ACCEPTED PAYMENT METHODS:<br>
-          > <span class="payment-method">CRYPTO (BTC, ETH, XMR)</span><br>
-          > <span class="payment-method">WIRE TRANSFER</span><br>
-          > <span class="payment-method">SECURE CREDIT CARD</span><br>
-          > <span class="discount">10% DISCOUNT FOR CRYPTO PAYMENTS</span>
-        </div>
-        <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
-          </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
+
+        <div class="content-panel-body" id="servicesBody">
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-shield-alt"></i> CYBER SERVICES PACKAGES</h2>
+            <div class="grid-layout services-grid">
+              <div class="content-card service-card">
+                <div class="card-header">
+                  <h3>NETSPLOIT PRO</h3>
+                  <span class="tag bestseller-tag">BESTSELLER</span>
+                </div>
+                <p>Comprehensive network penetration testing suite with advanced vulnerability assessment modules and reporting.</p>
+                <div class="card-details">
+                  <span class="price-tag">$499 <span class="price-qualifier">/ year</span></span>
+                </div>
+                <button class="action-btn card-action-btn"><i class="fas fa-shopping-cart"></i> Acquire License</button>
               </div>
-            </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+              
+              <div class="content-card service-card">
+                <div class="card-header">
+                  <h3>WEBFIRE 2.0 X</h3>
+                  <span class="tag new-tag">NEW</span>
+                </div>
+                <p>Next-gen web application firewall (WAF) bypass toolkit. Includes AI-driven evasion techniques & custom rule engine.</p>
+                <div class="card-details">
+                  <span class="price-tag">$349 <span class="price-qualifier">/ year</span></span>
+                </div>
+                <button class="action-btn card-action-btn"><i class="fas fa-shopping-cart"></i> Acquire License</button>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> ELITE TRAINING PROGRAMS</h2>
+            <div class="grid-layout training-grid">
+              <div class="content-card training-card">
+                <div class="card-header">
+                  <h3>RED TEAM OPERATIONS BOOTCAMP</h3>
+                </div>
+                <p>40-hour intensive, hands-on training program covering advanced offensive security tactics and C2 development.</p>
+                <div class="card-details">
+                  <span class="price-tag">$1,299 <span class="price-qualifier">/ seat</span></span>
+                  <p class="session-info"><i class="fas fa-calendar"></i> Next Cohort: Q4-2025</p>
+                  <p class="session-info"><i class="fas fa-users"></i> Seats Available: 8/20</p>
+                </div>
+                <button class="action-btn card-action-btn"><i class="fas fa-user-plus"></i> Enroll Operative</button>
+              </div>
+              
+              <div class="content-card training-card">
+                <div class="card-header">
+                  <h3>ADVANCED MALWARE ANALYSIS & RE</h3>
+                </div>
+                <p>Deep dive into reverse engineering, malware deobfuscation, and threat actor TTP analysis. Self-paced with lab access.</p>
+                <div class="card-details">
+                  <span class="price-tag">$899 <span class="price-qualifier">/ 1yr access</span></span>
+                  <p class="session-info"><i class="fas fa-sync"></i> Course Update: v3.2 Pending</p>
+                  <p class="session-info"><i class="fas fa-clock"></i> Access Duration: 1 Year Digital</p>
+                </div>
+                <button class="action-btn card-action-btn"><i class="fas fa-user-plus"></i> Enroll Operative</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section payment-info-section">
+            <h2 class="section-title"><i class="fas fa-credit-card"></i> PAYMENT & ACQUISITION PROTOCOLS</h2>
+            <div class="payment-methods">
+              <h3>ACCEPTED PAYMENT METHODS:</h3>
+              <div class="payment-method-list">
+                <div class="payment-method"><i class="fab fa-bitcoin"></i> CRYPTO TRANSFERS (XMR, BTC, ETH)</div>
+                <div class="payment-method"><i class="fas fa-exchange-alt"></i> SECURE WIRE PROTOCOL</div>
+                <div class="payment-method"><i class="fas fa-credit-card"></i> CREDIT CHIP</div>
+              </div>
+              <div class="discount-info">
+                <i class="fas fa-percentage"></i> 10% discount for all crypto payments
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      </div>
-    </div>
+    </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
   </div>
-
+  
+  <script src="/static/js/script.js"></script>
 </body>
 </html>

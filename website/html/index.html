@@ -5,157 +5,185 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Elite Cybersecurity</title>
   <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-       <a href="/" class="active">home</a>
-       <a href="/login">login</a>
-      <a href="/services">services</a>
-      
-      
-      <a href="/history">history</a>
-      <a href="/tools">tools</a>
-    </div>
-  </nav>
-
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt typing">whoami</div>
-        <div class="response">
-          > ARS//SEC - ELITE CYBERSECURITY UNIT<br>
-          > EST. 2015 | BLACKHAT APPROVED<br>
-          > SPECIALIZING IN RED TEAM OPERATIONS<br>
-          > <span class="status status-online"></span> SYSTEM STATUS: OPERATIONAL
-        </div>
-        
-        <div class="prompt">services --list</div>
-        <div class="response">
-          > PENETRATION TESTING<br>
-          > VULNERABILITY RESEARCH<br>
-          > MALWARE ANALYSIS<br>
-          > SECURITY TRAINING<br>
-          > THREAT HUNTING<br>
-          > INCIDENT RESPONSE
-        </div>
-        
-        <div class="prompt">status --system</div>
-        <div class="response">
-          > SYSTEM STATUS: <span class="status status-online"></span> OPERATIONAL<br>
-          > CURRENT THREAT LEVEL: <span class="status status-busy"></span> ELEVATED<br>
-          > LAST BREACH: NEVER<br>
-          > ACTIVE OPERATIONS: 12
-        </div>
-        
-        <div class="prompt">connect --secure</div>
-        <div class="response">
-          > INITIATING SECURE CONNECTION...<br>
-          > <a href="mailto:arsiconaony@gmail.com" class="btn">ENGAGE TERMINAL</a>
-        </div>
-        
-        <div class="prompt">
-          <input type="text" class="terminal-input" placeholder="Type 'help' for commands">
+      <div class="nav-links-container">
+        <a href="/" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
+
+    <main class="content-main-container" id="mainContainer">
+      <div class="content-panel-window" id="mainContentWindow">
+        <div class="window-header" id="mainHeader">
+          <div class="window-title" id="mainWindowTitle">
+            ARS//SEC :: Elite Cybersecurity Unit
+          </div>
         </div>
 
+        <div class="content-panel-body" id="mainBody">
+          <div class="content-section">
+            <div class="agent-profile-header">
+              <div class="agent-avatar">
+                <i class="fas fa-user-secret fa-3x"></i>
+              </div>
+              <div class="agent-info">
+                <h2>AGENT_7XN3 <span class="clearance-badge">CLEARANCE: DELTA_IV</span></h2>
+                <div class="agent-details">
+                  <p><i class="fas fa-fingerprint"></i> Session ID: 8A3F-00B2-C4D1-7E99</p>
+                  <p><i class="fas fa-network-wired"></i> Source IP: 192.168.X.X (Proxy)</p>
+                </div>
+              </div>
+              <div class="system-status">
+                <div class="status-icon"><i class="fas fa-shield-alt"></i> System Protected</div>
+                <div class="status-icon"><i class="fas fa-broadcast-tower"></i> Comms Active</div>
+                <div class="status-icon"><i class="fas fa-chart-line"></i> Threat Level: Low</div>
+              </div>
+            </div>
+          </div>
 
-        <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-history"></i> OPERATIONAL HISTORY</h2>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2023 - Present</div>
+                <h4>ELITE CYBERSECURITY UNIT</h4>
+                <p>Providing top-tier security services to Fortune 500 companies and government agencies. Specializing in advanced red team operations and zero-day research.</p>
+              </div>
+              
+              <div class="timeline-item">
+                <div class="timeline-date">2020 - 2023</div>
+                <h4>BLACKHAT OPERATIONS</h4>
+                <p>Conducted over 200 successful penetration tests, discovered 12 critical zero-day vulnerabilities, and trained 500+ security professionals.</p>
+              </div>
+              
+              <div class="timeline-item">
+                <div class="timeline-date">2017 - 2020</div>
+                <h4>FORMATION & EARLY MISSIONS</h4>
+                <p>Founded by elite hackers from military and private sector. Established reputation in bug bounty programs and security research.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-certificate"></i> CERTIFICATIONS & ACHIEVEMENTS</h2>
+            <div class="grid-layout cert-grid">
+              <div class="content-card cert-card">
+                <div class="card-header">
+                  <h3>OSCP</h3>
+                  <span class="tag active-tag">ACTIVE</span>
+                </div>
+                <p class="issuer">Offensive Security Certified Professional</p>
+                <div class="card-details">
+                  <p><i class="fas fa-id-badge"></i> Cert ID: OSCP-4872-2023</p>
+                  <p><i class="fas fa-calendar-plus"></i> Issued: 2023-01-15</p>
+                  <p><i class="fas fa-infinity"></i> Expires: Never</p>
+                </div>
+              </div>
+              
+              <div class="content-card cert-card">
+                <div class="card-header">
+                  <h3>CRTO</h3>
+                  <span class="tag active-tag">ACTIVE</span>
+                </div>
+                <p class="issuer">Certified Red Team Operator</p>
+                <div class="card-details">
+                  <p><i class="fas fa-id-badge"></i> Cert ID: CRTO-2291-2022</p>
+                  <p><i class="fas fa-calendar-plus"></i> Issued: 2022-08-30</p>
+                  <p><i class="fas fa-calendar-times"></i> Expires: 2024-08-30</p>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> SPECIALIZED TRAINING</h2>
+            <div class="grid-layout training-grid">
+              <div class="content-card training-card">
+                <div class="card-header">
+                  <h3>ADVANCED EXPLOIT DEV</h3>
+                  <span class="tag completed-tag">COMPLETED</span>
+                </div>
+                <p class="issuer">Offensive Security</p>
               </div>
-            </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+              
+              <div class="content-card training-card">
+                <div class="card-header">
+                  <h3>CLOUD PENETRATION TESTING</h3>
+                  <span class="tag completed-tag">COMPLETED</span>
+                </div>
+                <p class="issuer">SANS Institute</p>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+          
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-trophy"></i> NOTABLE ACHIEVEMENTS</h2>
+            <div class="grid-layout achievements-grid">
+              <div class="content-card achievement-card">
+                <div class="card-header">
+                  <h3>ZERO-DAY DISCOVERIES</h3>
+                </div>
+                <p>12 critical vulnerabilities discovered and responsibly disclosed</p>
+                <div class="achievement-tag">CVE-2023-4872</div>
+              </div>
+              
+              <div class="content-card achievement-card">
+                <div class="card-header">
+                  <h3>PENTEST SUCCESS RATE</h3>
+                </div>
+                <p>100% success rate in compromising target systems</p>
+                <div class="achievement-tag">200+ TESTS</div>
+              </div>
+              
+              <div class="content-card achievement-card">
+                <div class="card-header">
+                  <h3>TRAINED PROFESSIONALS</h3>
+                </div>
+                <p>500+ security experts trained through our programs</p>
+                <div class="achievement-tag">98% SATISFACTION</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-award"></i> INDUSTRY RECOGNITION</h2>
+            <div class="recognition-list">
+              <div class="recognition-item">
+                <i class="fas fa-star"></i> BLACKHAT USA 2023 - TOP SPEAKER
+              </div>
+              <div class="recognition-item">
+                <i class="fas fa-trophy"></i> DEFCON 2022 - CTF CHAMPIONS
+              </div>
+              <div class="recognition-item">
+                <i class="fas fa-medal"></i> BUG BOUNTY HALL OF FAME (2021, 2022)
+              </div>
+              <div class="recognition-item">
+                <i class="fas fa-award"></i> SANS TOP 10 SECURITY RESEARCHERS 2020
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </main>
+
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
   </div>
+  
   <script src="/static/js/script.js"></script>
-  <script>
-    const command = document.querySelector('.terminal-input');
-    command.addEventListener('keydown', function(event) {
-      if (event.key === 'Enter') {
-        const ter_body = document.querySelector('.terminal-body');
-        const content = command.value.trim().toLowerCase();
-
-        const response = document.createElement('div');
-        response.className = 'response';
-
-        const promptLine = document.createElement('div');
-        promptLine.className = 'prompt typing';
-        promptLine.textContent = `processing --command=${content}`;
-
-        const outputLine = document.createElement('div');
-        outputLine.append('> ');
-
-        const outputContent = getCommandResponse(content);
-
-        const safeText = document.createTextNode(outputContent);
-        outputLine.appendChild(safeText);
-
-        response.appendChild(promptLine);
-        response.appendChild(outputLine);
-
-        ter_body.insertBefore(response, command.closest('.prompt').nextSibling);
-        command.value = '';
-
-      }
-    });
-
-    function getCommandResponse(cmd) {
-      const commands = {
-        //for another day we will complete it , not now any way
-        help: 'Available commands: tools, services, clear',
-        clear: 'Terminal cleared',
-      };
-
-      return commands[cmd] || `Command "${cmd}" not found. Type "help" for available commands.`;
-    }
-
-  </script>
 </body>
 </html>

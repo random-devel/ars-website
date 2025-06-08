@@ -5,219 +5,240 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ARS//SEC | Agent Profile</title>
   <link rel="stylesheet" href="/static/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* Profile-specific styles */
-    .agent-badge {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
+    .profile-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
     }
-    
-    .agent-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 2px solid var(--primary);
-      background: var(--gray);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      color: var(--primary);
-    }
-    
-    .agent-info {
-      border-left: var(--border);
-      padding-left: 1rem;
-    }
-    
-    .clearance-level {
-      display: inline-block;
-      padding: 0.3rem 0.8rem;
-      background: var(--secondary);
-      color: var(--dark);
-      font-weight: bold;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-    }
-    
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .stat-card {
-      background: rgba(0, 0, 0, 0.3);
-      border: var(--border);
-      padding: 1.5rem;
+    #loading {
       text-align: center;
+      padding: 20px;
+      color: #666;
     }
-    
-    .stat-value {
-      font-size: 2rem;
-      color: var(--primary);
-      margin: 0.5rem 0;
+    #profile-content {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
-    
-    .operations-list {
-      margin-top: 2rem;
+    .logout-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #ff4444;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      margin-top: 20px;
     }
-    
-    .operation-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--gray);
+    .logout-btn:hover {
+      background-color: #ff0000;
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div class="logo">ARS//SEC</div>
-    <div class="nav-links">
-      <a href="/">home</a>
-      <a href="/login">login</a>
-      <a href="/services">services</a>
-      <a href="/history">history</a>
-      <a href="/tools">tools</a>
-      <a href="/profile" class="active">profile</a>
-    </div>
-  </nav>
-
-  <div class="terminal">
-    <div class="terminal-window">
-      <div class="terminal-header">
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
-        <div class="terminal-btn"></div>
+  <div class="site-wrapper">
+    <nav class="main-navigation" id="mainNav">
+      <div class="logo-container">
+        <span class="logo-text">ARS//SEC</span>
       </div>
-      <div class="terminal-body">
-        <div class="prompt">agent --status --id=AGENT_X137</div>
-        <div class="response">
-          > ACCESS GRANTED: <span class="status status-online"></span> VERIFIED<br>
-          > BIOMETRICS CONFIRMED | LAST LOGIN: TODAY 14:37 UTC
+      <div class="nav-links-container">
+        <a href="/" class="nav-link"><i class="fas fa-home"></i> Home</a>
+        <a href="/login" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="/services" class="nav-link"><i class="fas fa-cogs"></i> Services</a>
+        <a href="/tools" class="nav-link"><i class="fas fa-tools"></i> Tools</a>
+        <a href="/profile" class="nav-link active"><i class="fas fa-user-secret"></i> Profile</a>
+      </div>
+      <div class="nav-status-placeholder" id="navStatusIndicator">
+        <span id="connectionStatusText">STATUS:</span> <span class="status-dot online"></span> <span id="globalOnlineStatus">SECURE</span>
+      </div>
+    </nav>
+
+    <main class="content-main-container" id="profileMainContainer">
+      <div class="content-panel-window" id="profileContentWindow">
+        <div class="window-header" id="profileHeader">
+          <div class="window-title" id="profileWindowTitle">
+            ARS//SEC :: Agent Profile Dashboard
+          </div>
         </div>
-        
-        <div class="agent-badge">
-          <div class="agent-avatar">AX</div>
-          <div class="agent-info">
-            <div class="prompt">agent_x137</div>
-            <div class="response">
-              > OPERATIVE SINCE: 2022-03-15<br>
-              > DIVISION: RED TEAM<br>
-              <span class="clearance-level">CLEARANCE LEVEL: DELTA</span>
+
+        <div class="content-panel-body" id="profileBody">
+          <div class="profile-container">
+            <div id="loading">Loading...</div>
+            <div id="profile-content" style="display: none;">
+              <h1>Welcome, <span id="username"></span>!</h1>
+              <p>Login Time: <span id="login-time"></span></p>
+              <a href="/logout" class="logout-btn">Logout</a>
             </div>
           </div>
-        </div>
-        
-        <div class="prompt">stats --summary</div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="response">> COMPLETED OPS</div>
-            <div class="stat-value">27</div>
-          </div>
-          <div class="stat-card">
-            <div class="response">> ACTIVE OPS</div>
-            <div class="stat-value">3</div>
-          </div>
-          <div class="stat-card">
-            <div class="response">> SUCCESS RATE</div>
-            <div class="stat-value">96%</div>
-          </div>
-          <div class="stat-card">
-            <div class="response">> DAYS ACTIVE</div>
-            <div class="stat-value">428</div>
-          </div>
-        </div>
-        
-        <div class="prompt">operations --recent --limit=5</div>
-        <div class="operations-list">
-          <div class="operation-item">
-            <div class="response">> OP#2947 | TARGET: FINANCE_SERVERS</div>
-            <div class="response"><span class="status status-online"></span> COMPLETED</div>
-          </div>
-          <div class="operation-item">
-            <div class="response">> OP#2912 | TARGET: CORP_NETWORK</div>
-            <div class="response"><span class="status status-online"></span> COMPLETED</div>
-          </div>
-          <div class="operation-item">
-            <div class="response">> OP#2898 | TARGET: RESEARCH_DB</div>
-            <div class="response"><span class="status status-busy"></span> IN PROGRESS</div>
-          </div>
-          <div class="operation-item">
-            <div class="response">> OP#2873 | TARGET: GOV_SYSTEM</div>
-            <div class="response"><span class="status status-online"></span> COMPLETED</div>
-          </div>
-          <div class="operation-item">
-            <div class="response">> OP#2855 | TARGET: INDUSTRIAL_CTRL</div>
-            <div class="response"><span class="status status-busy"></span> IN PROGRESS</div>
-          </div>
-        </div>
-        
-        <div class="prompt">security --advisory</div>
-        <div class="response">
-          > NEXT BRIEFING: 2023-11-15 08:00 UTC<br>
-          > PENDING TRAINING: ADVANCED TRACKING (DUE: 2023-12-01)<br>
-          > <span class="status status-busy"></span> SYSTEM UPDATE REQUIRED
-        </div>
-          <div class="terminal-footer">
-        <div class="footer-grid">
-          <div class="footer-logo">
-            <span class="logo">ARS//SEC</span>
-            <div class="footer-tagline">ELITE CYBERSECURITY UNIT</div>
-          </div>
-          
-          <div class="footer-links">
-            <div class="footer-section">
-              <div class="footer-prompt">connect --social</div>
-              <div class="footer-links-group">
-                <a href="https://twitter.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> TWITTER
-                </a>
-                <a href="https://github.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> GITHUB
-                </a>
-                <a href="https://linkedin.com" target="_blank" class="footer-link">
-                  <span class="status status-online"></span> LINKEDIN
-                </a>
+
+          <div class="content-section">
+            <div class="agent-profile-header">
+              <div class="agent-avatar">
+                <i class="fas fa-user-secret fa-3x"></i>
               </div>
-            </div>
-            
-            <div class="footer-section">
-              <div class="footer-prompt">access --legal</div>
-              <div class="footer-links-group">
-                <a href="/privacy" class="footer-link">
-                  <span class="status status-busy"></span> PRIVACY
-                </a>
-                <a href="/terms" class="footer-link">
-                  <span class="status status-busy"></span> TERMS
-                </a>
-                <a href="/contact" class="footer-link">
-                  <span class="status status-busy"></span> CONTACT
-                </a>
+              <div class="agent-info">
+                <h2>AGENT_X137 <span class="clearance-badge">CLEARANCE: DELTA</span></h2>
+                <div class="agent-details">
+                  <p><i class="fas fa-calendar-check"></i> Operative Since: 2022-03-15</p>
+                  <p><i class="fas fa-users-cog"></i> Division: RED TEAM</p>
+                  <p><i class="fas fa-clock"></i> Last Login: TODAY 14:37 UTC</p>
+                </div>
+              </div>
+              <div class="agent-status">
+                <span class="status-badge verified"><i class="fas fa-shield-check"></i> VERIFIED</span>
               </div>
             </div>
           </div>
-        </div>
-        
-        <div class="footer-copyright">
-          <div class="response">
-            > © 2023 ARS//SEC OPERATIONS | ALL RIGHTS RESERVED<br>
-            > UNAUTHORIZED ACCESS PROHIBITED | <span class="status status-offline"></span> SYSTEM MONITORED 24/7
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> PERFORMANCE METRICS</h2>
+            <div class="grid-layout stats-grid">
+              <div class="content-card stat-card">
+                <div class="stat-icon"><i class="fas fa-flag-checkered"></i></div>
+                <div class="stat-value">27</div>
+                <div class="stat-label">COMPLETED OPS</div>
+              </div>
+              <div class="content-card stat-card">
+                <div class="stat-icon"><i class="fas fa-running"></i></div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">ACTIVE OPS</div>
+              </div>
+              <div class="content-card stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="stat-value">96%</div>
+                <div class="stat-label">SUCCESS RATE</div>
+              </div>
+              <div class="content-card stat-card">
+                <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                <div class="stat-value">428</div>
+                <div class="stat-label">DAYS ACTIVE</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-tasks"></i> RECENT OPERATIONS</h2>
+            <div class="operations-list">
+              <div class="content-card operation-card">
+                <div class="operation-info">
+                  <h3><i class="fas fa-file-code"></i> OP#2947</h3>
+                  <p>TARGET: FINANCE_SERVERS</p>
+                </div>
+                <div class="operation-status completed">
+                  <i class="fas fa-check-circle"></i> COMPLETED
+                </div>
+              </div>
+
+              <div class="content-card operation-card">
+                <div class="operation-info">
+                  <h3><i class="fas fa-network-wired"></i> OP#2912</h3>
+                  <p>TARGET: CORP_NETWORK</p>
+                </div>
+                <div class="operation-status completed">
+                  <i class="fas fa-check-circle"></i> COMPLETED
+                </div>
+              </div>
+
+              <div class="content-card operation-card">
+                <div class="operation-info">
+                  <h3><i class="fas fa-database"></i> OP#2898</h3>
+                  <p>TARGET: RESEARCH_DB</p>
+                </div>
+                <div class="operation-status in-progress">
+                  <i class="fas fa-sync fa-spin"></i> IN PROGRESS
+                </div>
+              </div>
+
+              <div class="content-card operation-card">
+                <div class="operation-info">
+                  <h3><i class="fas fa-landmark"></i> OP#2873</h3>
+                  <p>TARGET: GOV_SYSTEM</p>
+                </div>
+                <div class="operation-status completed">
+                  <i class="fas fa-check-circle"></i> COMPLETED
+                </div>
+              </div>
+
+              <div class="content-card operation-card">
+                <div class="operation-info">
+                  <h3><i class="fas fa-industry"></i> OP#2855</h3>
+                  <p>TARGET: INDUSTRIAL_CTRL</p>
+                </div>
+                <div class="operation-status in-progress">
+                  <i class="fas fa-sync fa-spin"></i> IN PROGRESS
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-section">
+            <h2 class="section-title"><i class="fas fa-bell"></i> SECURITY ADVISORY</h2>
+            <div class="info-panel">
+              <div class="advisory-item">
+                <i class="fas fa-calendar-day"></i>
+                <div class="advisory-content">
+                  <h4>NEXT BRIEFING</h4>
+                  <p>2023-11-15 08:00 UTC</p>
+                </div>
+              </div>
+              <div class="advisory-item">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="advisory-content">
+                  <h4>PENDING TRAINING</h4>
+                  <p>ADVANCED TRACKING (DUE: 2023-12-01)</p>
+                </div>
+              </div>
+              <div class="advisory-item warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div class="advisory-content">
+                  <h4>SYSTEM UPDATE REQUIRED</h4>
+                  <p>Please update your system to the latest version</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
-    </div>
+    </main>
 
-    </div>
+    <footer class="site-global-footer" id="siteGlobalFooter">
+      <p>&copy; <span id="currentYear"></span> ARS//SEC OPERATIONS. ALL RIGHTS RESERVED. UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.</p>
+    </footer>
   </div>
-
-  <!-- Terminal Footer -->
   
   <script src="/static/js/script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const response = await fetch('/api/profile');
+        if (!response.ok) {
+          if (response.status === 401) {
+            window.location.href = '/login';
+            return;
+          }
+          throw new Error('Failed to fetch profile data');
+        }
+
+        const data = await response.json();
+        
+        // Hide loading and show content
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('profile-content').style.display = 'block';
+        
+        // Fill in the data
+        document.getElementById('username').textContent = data.username;
+        document.getElementById('login-time').textContent = data.login_time;
+        
+      } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('loading').textContent = 
+          'Error loading profile data';
+      }
+    });
+  </script>
 </body>
 </html>
